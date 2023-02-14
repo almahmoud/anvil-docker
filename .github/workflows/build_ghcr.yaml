@@ -14,6 +14,7 @@ jobs:
       matrix:
         base:
           - {directory: 'anvil-rstudio-bioconductor'}
+          - {directory: 'anvil-rstudio-ml-bioconductor'}
           - {directory: 'anvil-rstudio-bioconductor-devel'}
     name: Build branch images
     runs-on: ubuntu-latest
@@ -53,11 +54,26 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - run: |
+          set -x
           mkdir -p ${{ matrix.base.directory }}/info
           docker run --name ${{ matrix.base.directory }} -d ${{ steps.meta.outputs.tags }} 
           bash scripts/generate_packages.sh ${{ matrix.base.directory }}
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add ${{ matrix.base.directory }}
-          git commit -m "Generated info for ${{ matrix.base.directory }}"
-          git push
+          mkdir -p /tmp/${{ matrix.base.directory }}
+          cp -r ${{ matrix.base.directory }}/info /tmp/${{ matrix.base.directory }}/
+
+      - name: Rclone mark as pushed
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 5
+          shell: bash
+          command: |
+            set -x
+            BRANCH=${GITHUB_REF#refs/heads/}
+            git pull origin $BRANCH || git reset --hard origin/$BRANCH
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            cp -r /tmp/${{ matrix.base.directory }}/info ${{ matrix.base.directory }}/
+            git add ${{ matrix.base.directory }}
+            git commit -m "Generated info for ${{ matrix.base.directory }}"
+            git push

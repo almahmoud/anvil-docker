@@ -33,6 +33,50 @@
                 "include_in_custom_dataproc" : true,
                 "include_in_custom_gce" : true
             }
+        },
+        {
+            "name" : "anvil-rstudio-ml-bioconductor",
+            "base_label" : "R / Bioconductor ML",
+            "tools" : [
+                "python",
+                "r"
+            ],
+            "packages" : {
+                "r" : [
+                    "Bioconductor",
+                    "tidyverse"
+                ]
+            },
+            "version" : "3.16.0",
+            "automated_flags" : {
+                "generate_docs" : true,
+                "include_in_ui" : true,
+                "build" : true,
+                "include_in_custom_dataproc" : true,
+                "include_in_custom_gce" : true
+            }
+        },
+        {
+            "name" : "anvil-rstudio-bioconductor-devel",
+            "base_label" : "R / Bioconductor DEVEL",
+            "tools" : [
+                "python",
+                "r"
+            ],
+            "packages" : {
+                "r" : [
+                    "Bioconductor",
+                    "tidyverse"
+                ]
+            },
+            "version" : "3.17.0",
+            "automated_flags" : {
+                "generate_docs" : true,
+                "include_in_ui" : true,
+                "build" : true,
+                "include_in_custom_dataproc" : true,
+                "include_in_custom_gce" : true
+            }
         }
     ]
 }
