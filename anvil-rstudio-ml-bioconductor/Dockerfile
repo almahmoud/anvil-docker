@@ -1,4 +1,4 @@
-FROM ghcr.io/bioconductor/ml-verse:RELEASE_3_16
+FROM docker.io/almahmoud/bioconductor:cuda-enabled-2-28-23
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     gnupg \
