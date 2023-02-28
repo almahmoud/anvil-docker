@@ -25,6 +25,8 @@ ENV RSTUDIO_PORT 8001
 ENV RSTUDIO_HOME /etc/rstudio
 ENV RSTUDIO_USERSETTING /home/rstudio/.config/rstudio/rstudio-prefs.json
 
+ENV NOTEBOOKS_DIR /home/rstudio
+
 ADD rserver.conf $RSTUDIO_HOME/rserver.conf
 
 RUN sed -i 's/"always_save_history": false/"always_save_history": true/g'  $RSTUDIO_USERSETTING \
