@@ -4,7 +4,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
     git python3-setuptools python3-pip build-essential libcurl4-gnutls-dev \
     zlib1g-dev rsync vim cmake tabix
 
-RUN cd $JUPYTER_HOME && git clone \
+RUN mkdir -p /tmp/rapids && cd /tmp/rapids && git clone \
     https://github.com/cjnolet/AtacWorks.git atacworks && \
     pip3 install \
     scanpy==1.9.1 wget pytabix dash-daq \
