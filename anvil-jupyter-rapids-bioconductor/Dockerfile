@@ -2,7 +2,8 @@ FROM us.gcr.io/broad-dsp-gcr-public/terra-jupyter-bioconductor:2.1.8
 
 USER root
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+RUN curl -O https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+    && apt-key add apt-key.gpg && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     git python3-setuptools python3-pip build-essential libcurl4-gnutls-dev \
     zlib1g-dev rsync vim cmake tabix
 
