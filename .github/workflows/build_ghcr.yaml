@@ -53,7 +53,7 @@ jobs:
 
       - run: |
           set -x
-	  if [[ "${{ matrix.base.directory }}" = *"-rstudio-"* ]]; then
+          if [[ "${{ matrix.base.directory }}" = *"-rstudio-"* ]]; then
             mkdir -p ${{ matrix.base.directory }}/info
             docker run --name ${{ matrix.base.directory }} -d ${{ steps.meta.outputs.tags }} 
             bash scripts/generate_packages.sh ${{ matrix.base.directory }}
