@@ -13,9 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         base:
-          - {directory: 'anvil-rstudio-bioconductor'}
-          - {directory: 'anvil-rstudio-ml-bioconductor'}
-          - {directory: 'anvil-rstudio-bioconductor-devel'}
+          - {directory: 'anvil-jupyter-rapids-bioconductor'}
     name: Build branch images
     runs-on: ubuntu-latest
     steps:
