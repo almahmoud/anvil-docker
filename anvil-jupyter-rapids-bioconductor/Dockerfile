@@ -6,9 +6,8 @@ RUN rm -rf /etc/apt/sources.list.d && rm /etc/apt/sources.list \
     && echo "deb http://security.ubuntu.com/ubuntu/ bionic main" >> /etc/apt/sources.list \
     && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     git python3-setuptools build-essential libcurl4-gnutls-dev \
-    zlib1g-dev rsync vim cmake tabix
-
-RUN mkdir -p /tmp/rapids && cd /tmp/rapids && git clone \
+    zlib1g-dev rsync vim cmake tabix \
+    && mkdir -p /tmp/rapids && cd /tmp/rapids && git clone \
     https://github.com/cjnolet/AtacWorks.git atacworks && \
     pip3 install \
     scanpy==1.9.1 wget pytabix dash-daq \
