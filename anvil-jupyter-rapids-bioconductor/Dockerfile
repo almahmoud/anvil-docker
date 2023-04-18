@@ -5,7 +5,11 @@ USER root
 RUN apt-get update \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 \
     && add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/' \
-    apt-get update --allow-unauthenticated && DEBIAN_FRONTEND=noninteractive apt-get install --allow-unauthenticated -y --no-install-recommends \
+    && echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic universe" >> /etc/apt/sources.list \
+    && echo "deb http://security.ubuntu.com/ubuntu/ bionic main" >> /etc/apt/sources.list \
+    && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - \
+    && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - \
+    && apt-get update --allow-unauthenticated && DEBIAN_FRONTEND=noninteractive apt-get install --allow-unauthenticated -y --no-install-recommends \
     git python3-setuptools build-essential libcurl4-gnutls-dev \
     zlib1g-dev rsync vim cmake tabix
 
