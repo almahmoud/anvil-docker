@@ -18,5 +18,5 @@ RUN rm -rf /etc/apt/sources.list.d && rm /etc/apt/sources.list \
 
 USER jupyter
 
-RUN cd /tmp/rapids/rapids-single-cell-examples && /opt/conda/bin/conda env create --name rapidgenomics -f conda/rapidgenomics_cuda11.5.yml && /opt/conda/bin/conda init && source ~/.bashrc && conda activate rapidgenomics && python -m ipykernel install --user --display-name "Python (rapidgenomics)"
+RUN bash -c 'cd /tmp/rapids/rapids-single-cell-examples && /opt/conda/bin/conda env create --name rapidgenomics -f conda/rapidgenomics_cuda11.5.yml && /opt/conda/bin/conda init && source ~/.bashrc && conda activate rapidgenomics && python -m ipykernel install --user --display-name "Python (rapidgenomics)"'
 
