@@ -14,7 +14,7 @@ RUN rm -rf /etc/apt/sources.list.d && rm /etc/apt/sources.list \
     dash-html-components dash-bootstrap-components dash-core-components && \
     cd atacworks && pip3 install . && cd .. && \
     git clone https://github.com/NVIDIA-Genomics-Research/rapids-single-cell-examples.git rapids-single-cell-examples && \
-    cd rapids-single-cell-examples && git checkout master && git pull && chown -R jupyter /tmp/rapids
+    cd rapids-single-cell-examples && git checkout master && git pull && chown -R jupyter /tmp/rapids && chown -R /home/jupyter
 
 USER jupyter
 
