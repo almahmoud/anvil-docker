@@ -18,4 +18,5 @@ RUN rm -rf /etc/apt/sources.list.d && rm /etc/apt/sources.list \
 
 USER jupyter
 
+RUN cd /tmp/rapids && conda env create --name rapidgenomics -f conda/rapidgenomics_cuda11.5.yml && conda activate rapidgenomics && python -m ipykernel install --user --display-name "Python (rapidgenomics)"
 
