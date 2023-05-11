@@ -1,6 +1,6 @@
 steps:
   - name: 'docker.io/docker:23.0'
-    entrypoint: bash
+    entrypoint: sh
     args:
       - -c
       - |
