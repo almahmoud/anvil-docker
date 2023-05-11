@@ -6,6 +6,6 @@ steps:
       - |
         cd anvil-rstudio-bioconductor
         tag=$(cat ./VERSION)
-        DOCKER_BUILDKIT=1 docker build -t us.gcr.io/landmarkanvil/anvil-rstudio-bioconductor:$tag .
+        DOCKER_BUILDKIT=1 docker buildx build -t us.gcr.io/landmarkanvil/anvil-rstudio-bioconductor:$tag .
         docker push us.gcr.io/landmarkanvil/anvil-rstudio-bioconductor:$tag
 timeout: 3600s
