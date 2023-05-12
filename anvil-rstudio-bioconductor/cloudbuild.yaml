@@ -1,11 +1,16 @@
 steps:
-  - name: 'docker.io/docker:23.0'
-    entrypoint: sh
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: bash
     args:
       - -c
       - |
         cd anvil-rstudio-bioconductor
         tag=$(cat ./VERSION)
-        DOCKER_BUILDKIT=1 docker buildx build -t us.gcr.io/landmarkanvil/anvil-rstudio-bioconductor:$tag .
+        out=$(docker pull ghcr.io/anvilproject/anvil-rstudio-bioconductor:$tag)
+        while [[ $out != *"up to date"* ]]; do
+          out=$(docker pull ghcr.io/anvilproject/anvil-rstudio-bioconductor:$tag);
+          sleep 30;
+        done
+        docker tag ghcr.io/anvilproject/anvil-rstudio-bioconductor:$tag us.gcr.io/landmarkanvil/anvil-rstudio-bioconductor:$tag
         docker push us.gcr.io/landmarkanvil/anvil-rstudio-bioconductor:$tag
 timeout: 3600s
